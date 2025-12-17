@@ -18,14 +18,31 @@ export interface BulletItem {
   importance?: 'high' | 'medium' | 'low';
 }
 
+/** Context type for document analysis */
+export type Context = 'document' | 'presentation' | 'reference';
+
 /**
- * Input to the bullet tool
+ * A section containing grouped bullet items (for long documents)
+ */
+export interface BulletSection {
+  /** Section title/heading */
+  title: string;
+  /** Bullet items in this section */
+  items: BulletItem[];
+  /** Optional context override for this section */
+  context?: Context;
+}
+
+/**
+ * Input to the bullet tool - supports flat items OR sections (mutually exclusive)
  */
 export interface BulletInput {
-  /** Array of bullet items to validate */
-  items: BulletItem[];
+  /** Array of bullet items to validate (flat mode) */
+  items?: BulletItem[];
+  /** Grouped sections for long documents (sectioned mode) */
+  sections?: BulletSection[];
   /** Usage context affects recommendations */
-  context?: 'document' | 'presentation' | 'reference';
+  context?: Context;
 }
 
 // ============================================================================
@@ -78,6 +95,24 @@ export type Grade = 'A' | 'B' | 'C' | 'D' | 'F';
 export type ContextFit = 'excellent' | 'good' | 'poor';
 
 /**
+ * Score breakdown for a single section (used in sectioned mode)
+ */
+export interface SectionScore {
+  /** Section title */
+  title: string;
+  /** Section score (0-100) */
+  score: number;
+  /** Section letter grade */
+  grade: Grade;
+  /** Number of items in this section */
+  item_count: number;
+  /** Issues found in this section */
+  issues: ValidationIssue[];
+  /** Context used for this section */
+  context: Context;
+}
+
+/**
  * Complete analysis result returned by the bullet tool
  */
 export interface BulletAnalysis {
@@ -107,6 +142,8 @@ export interface BulletAnalysis {
   context_fit: ContextFit;
   /** Context-specific feedback */
   context_feedback?: string;
+  /** Per-section scores (only in sectioned mode) */
+  section_scores?: SectionScore[];
 }
 
 // ============================================================================
