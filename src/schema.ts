@@ -87,6 +87,18 @@ export const BULLET_TOOL: Tool = {
   inputSchema: {
     type: 'object',
     properties: {
+      title: {
+        type: 'string',
+        description: 'Title/heading for the bullet list (e.g., "Email Thread Summary")',
+      },
+      description: {
+        type: 'string',
+        description: 'Brief summary or context about what the bullets cover',
+      },
+      intro: {
+        type: 'string',
+        description: 'Introductory phrase before the bullets (e.g., "Here are the main topics:")',
+      },
       items: {
         type: 'array',
         description:
@@ -103,6 +115,14 @@ export const BULLET_TOOL: Tool = {
             title: {
               type: 'string',
               description: 'Section heading/title (e.g., "Chapter 1: Introduction")',
+            },
+            description: {
+              type: 'string',
+              description: 'Brief summary or context for this section',
+            },
+            intro: {
+              type: 'string',
+              description: 'Introductory phrase before the section bullets',
             },
             items: {
               type: 'array',
