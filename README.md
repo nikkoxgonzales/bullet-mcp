@@ -1,3 +1,7 @@
+![bullet-mcp.jpg](bullet-mcp.jpg)
+
+---
+
 # bullet-mcp
 
 MCP server for evidence-based bullet point summarization guidance. Validates and improves bullet lists using scientifically-validated principles from cognitive psychology and UX research.
