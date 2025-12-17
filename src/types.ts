@@ -25,12 +25,12 @@ export type Context = 'document' | 'presentation' | 'reference';
  * A section containing grouped bullet items (for long documents)
  */
 export interface BulletSection {
-  /** Section title/heading */
+  /** Section title/heading (required) */
   title: string;
-  /** Brief summary or context for this section */
-  description?: string;
-  /** Introductory phrase before the section bullets */
-  intro?: string;
+  /** Brief summary or context for this section (required) */
+  description: string;
+  /** Introductory phrase before the section bullets (required) */
+  intro: string;
   /** Bullet items in this section */
   items: BulletItem[];
   /** Optional context override for this section */
@@ -41,12 +41,12 @@ export interface BulletSection {
  * Input to the bullet tool - supports flat items OR sections (mutually exclusive)
  */
 export interface BulletInput {
-  /** Title/heading for the bullet list */
-  title?: string;
-  /** Brief summary or context about what the bullets cover */
-  description?: string;
-  /** Introductory phrase before the bullets */
-  intro?: string;
+  /** Title/heading for the bullet list (required) */
+  title: string;
+  /** Brief summary or context about what the bullets cover (required) */
+  description: string;
+  /** Introductory phrase before the bullets (required) */
+  intro: string;
   /** Array of bullet items to validate (flat mode) */
   items?: BulletItem[];
   /** Grouped sections for long documents (sectioned mode) */
@@ -111,9 +111,9 @@ export interface SectionScore {
   /** Section title */
   title: string;
   /** Brief summary or context for this section */
-  description?: string;
+  description: string;
   /** Introductory phrase before the section bullets */
-  intro?: string;
+  intro: string;
   /** Section score (0-100) */
   score: number;
   /** Section letter grade */
@@ -145,11 +145,11 @@ export interface StructuredBulletList {
  */
 export interface BulletAnalysis {
   /** Title/heading for the bullet list (echoed from input) */
-  title?: string;
+  title: string;
   /** Brief summary or context (echoed from input) */
-  description?: string;
+  description: string;
   /** Introductory phrase (echoed from input) */
-  intro?: string;
+  intro: string;
   /** Overall score from 0-100 */
   overall_score: number;
   /** Letter grade */
